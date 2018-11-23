@@ -22,6 +22,8 @@ const app = express();
 const server = new ApolloServer({
    typeDefs, 
    resolvers,
+   mocks: true,
+   mockEntireSchema: false,
    introspection: true,
    playground: true
   });
@@ -31,5 +33,5 @@ var port = process.env.PORT || 4000;
 // This `listen` method launches a web-server.  Existing apps
 // can utilize middleware options, which we'll discuss later.
 app.listen(port, () => {
-  console.log(`🚀  Server ready at ${server.graphqlPath}`);
+  console.log(`🚀  Server ready, url: ${server.graphqlPath}`);
 });

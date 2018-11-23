@@ -6,34 +6,99 @@ export let typeDefs = gql`
     id: ID!
   }
 
-  type Subscription {
-    classAdded: Class
-  }
-
-
   scalar Date
 
-
-  type GeoCenter {
-    lat: Float
-    lon: Float
+  enum Role {
+    MANAGER,
+    WORKER
   }
 
-
-  type Class implements INode{
-
+  type Employee implements INode{
     id: ID!
 
-    classId: Int
-    center: GeoCenter
+    firstName: String!
+    lastName: String!
+    birthday: Date!
+    registrationDate: Date!
+    phone: String!
 
-    name: String,
-
+    schedles(from: Date!, till: Date!): [Schedle]
+    reports(from: Date!, till: Date!): [Report]
   }
 
+  type Group implements INode {
+    id: ID!
+
+    symbole: Int!
+    name: String!
+
+    schedles(from: Date!, till: Date!): [Schedle]
+    reports(from: Date!, till: Date!): [Report]
+  }
+
+  type Station implements INode {
+    id: ID!
+
+    StationNumber: Int!
+    role: String!
+    group: Role!
+
+    schedles(from: Date!, till: Date!): [Schedle]
+    reports(from: Date!, till: Date!): [Report] 
+  }
+
+
+  type Day implements INode {
+    id: ID!
+    
+    year: String!
+    dayOfYear: Int!
+    dayOfWeek: Int!
+    display: String!
+    display_he: String!
+    isHoliday: Int!
+    holidayName: String!
+
+    schedles(employees: [Int], stations: [Int]): [Schedle]
+    reports(employees: [Int], stations: [Int]): [Report]
+  }
+
+  type Schedle implements INode {
+    id: ID!
+  
+    date: Day!
+    employee: Employee!
+    station: Station!
+    in: Date!
+    out: Date!
+  }
+
+  type Report implements INode {
+    id: ID!
+
+    date: Day!
+    employee: Employee!
+    station: Station!
+    in: Date
+    out: Date
+  }
+
+
   type Query {
-    class(classId: Int!): Class,
-    classes: [Class]
+    employee(id: Int!): Employee
+    employees: [Employee]
+    group(symbole: Int!): Group
+    groups: [Group]
+    station(StationNumber: Int!): Station
+    stations(group: Int): [Station]
+    day(data: Date!): Day
+    days(from: Date, till: Date): [Day]
+    report(data: Date!): Report
+    reports(from: Date!, till: Date!): [Report]
+    schedle(data: Date!): Schedle
+    schedles(from: Date!, till: Date!): [Schedle]
   }
 
 `;
+
+
