@@ -2,8 +2,8 @@ import casual from 'casual';
 
 class Group {
 
-  constructor(symbol, name) {
-    this.id = casual.uuid;
+  constructor(id, symbol, name) {
+    this.id = id;
     this.symbol = symbol;
     this.name = name;
   }

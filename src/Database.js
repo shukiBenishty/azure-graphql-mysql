@@ -1,26 +1,84 @@
-import mysql from 'mysql';
-
-export default
-class Database {
-    constructor( config ) {
-        this.connection = mysql.createConnection( config );
-    }
-    query( sql, args ) {
-        return new Promise( ( resolve, reject ) => {
-            this.connection.query( sql, args, ( err, rows ) => {
-                if ( err )
-                    return reject( err );
-                resolve( rows );
-            } );
-        } );
-    }
-    close() {
-        return new Promise( ( resolve, reject ) => {
-            this.connection.end( err => {
-                if ( err )
-                    return reject( err );
-                resolve();
-            } );
-        } );
-    }
+let database = {
+    Employees: [
+        {
+            id: "ID",
+        
+            firstName: "String",
+            lastName: "String",
+            birthday: "Date",
+            registrationDate: "Date",
+            phone: "String",
+        
+            schedules: [],
+            reports: []
+        }
+    ],
+    
+    Groups: [
+        {
+        id: "ID",
+    
+        symbole: "Int",
+        name: "String",
+    
+        schedules: [],
+        reports: []
+      }
+    ],
+    
+    Stations: [
+        {
+            id: "ID",
+        
+            StationNumber: "Int",
+            role: {},
+            group: {},
+        
+            schedules: [],
+            reports: []
+      }
+    ],
+    
+    Days: [
+        {
+            id: "ID",
+            
+            year: "String",
+            dayOfYear: "Int",
+            dayOfWeek: "Int",
+            display: "String",
+            display_he: "String",
+            isHoliday: "Int",
+            holidayName: "String",
+        
+            schedules: [],
+            reports: []
+      }
+    ],
+     
+    Schedules: [
+        {
+            id: "ID",
+        
+            date: {},
+            employee: {},
+            station: {},
+            in: "Date",
+            out: "Date",
+      }
+    ],
+     
+    Reports: [
+        {
+            id: "ID",
+        
+            date: {},
+            employee: {},
+            station: {},
+            in: "Date",
+            out: "Date",
+      }
+    ]
 }
+
+export default database;

@@ -22,7 +22,7 @@ export let typeDefs = gql`
     registrationDate: Date!
     phone: String!
 
-    schedles(from: Date!, till: Date!): [Schedle]
+    schedules(from: Date!, till: Date!): [Schedule]
     reports(from: Date!, till: Date!): [Report]
   }
 
@@ -32,7 +32,7 @@ export let typeDefs = gql`
     symbole: Int!
     name: String!
 
-    schedles(from: Date!, till: Date!): [Schedle]
+    schedules(from: Date!, till: Date!): [Schedule]
     reports(from: Date!, till: Date!): [Report]
   }
 
@@ -40,10 +40,10 @@ export let typeDefs = gql`
     id: ID!
 
     StationNumber: Int!
-    role: String!
-    group: Role!
+    role: Role!
+    group: Group!
 
-    schedles(from: Date!, till: Date!): [Schedle]
+    schedules(from: Date!, till: Date!): [Schedule]
     reports(from: Date!, till: Date!): [Report] 
   }
 
@@ -59,11 +59,11 @@ export let typeDefs = gql`
     isHoliday: Int!
     holidayName: String!
 
-    schedles(employees: [Int], stations: [Int]): [Schedle]
+    schedules(employees: [Int], stations: [Int]): [Schedule]
     reports(employees: [Int], stations: [Int]): [Report]
   }
 
-  type Schedle implements INode {
+  type Schedule implements INode {
     id: ID!
   
     date: Day!
@@ -95,8 +95,8 @@ export let typeDefs = gql`
     days(from: Date, till: Date): [Day]
     report(data: Date!): Report
     reports(from: Date!, till: Date!): [Report]
-    schedle(data: Date!): Schedle
-    schedles(from: Date!, till: Date!): [Schedle]
+    schedule(data: Date!): Schedule
+    schedules(from: Date!, till: Date!): [Schedule]
   }
 
 `;
