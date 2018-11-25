@@ -21,11 +21,10 @@
 
 module.exports = (sequelize, Sequelize) => {
     return sequelize.define('Day', {
-        date: { type: Sequelize.DATE, allowNull: false},
         year: { type: Sequelize.STRING, allowNull: false },
-        dayOfYear: { type: Sequelize.STRING, allowNull: false },
-        dayOfWeek: { type: Sequelize.STRING, allowNull: false },
-        display: { type: Sequelize.STRING, allowNull: false },
+        dayOfYear: { type: Sequelize.INTEGER(3), allowNull: false },
+        dayOfWeek: { type: Sequelize.INTEGER(1), allowNull: false },
+        display: { type: Sequelize.DATEONLY, allowNull: false,  primaryKey: true },
         display_he: { type: Sequelize.STRING, allowNull: false },
         isHoliday: { type: Sequelize.BOOLEAN, allowNull: false },
         holidayName: { type: Sequelize.STRING, allowNull: true }

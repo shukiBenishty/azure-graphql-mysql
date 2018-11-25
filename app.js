@@ -5,15 +5,6 @@ const express = require('express');
 const { ApolloServer, gql } = require('apollo-server-express');
 
 
-const {
-  Day,
-  Report,
-  Schedule,
-  Group,
-  Employee,
-  Station
-} = require('./src/connection');
-
 
 const app = express();
 

@@ -20,8 +20,8 @@
 
 module.exports = (sequelize, Sequelize) => {
     return sequelize.define('Report', {
-        in: { type: Sequelize.DATE, allowNull: true },
-        out: { type: Sequelize.DATE, allowNull: true }
+        in: { type: Sequelize.TIME, allowNull: true },
+        out: { type: Sequelize.TIME, allowNull: true }
     })
   }
   

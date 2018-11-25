@@ -6,24 +6,17 @@ export let typeDefs = gql`
     id: ID!
   }
 
-  scalar Date
-
-  enum Role {
-    MANAGER,
-    WORKER
-  }
-
   type Employee implements INode{
     id: ID!
 
     firstName: String!
     lastName: String!
-    birthday: Date!
-    registrationDate: Date!
+    birthday: String!
+    registrationString: String!
     phone: String!
 
-    schedules(from: Date!, till: Date!): [Schedule]
-    reports(from: Date!, till: Date!): [Report]
+    schedules(from: String!, till: String!): [Schedule]
+    reports(from: String!, till: String!): [Report]
   }
 
   type Group implements INode {
@@ -32,31 +25,31 @@ export let typeDefs = gql`
     symbole: Int!
     name: String!
 
-    schedules(from: Date!, till: Date!): [Schedule]
-    reports(from: Date!, till: Date!): [Report]
+    schedules(from: String!, till: String!): [Schedule]
+    reports(from: String!, till: String!): [Report]
   }
 
   type Station implements INode {
     id: ID!
 
-    StationNumber: Int!
-    role: Role!
+    stationNumber: Int!
+    role: String!
     group: Group!
 
-    schedules(from: Date!, till: Date!): [Schedule]
-    reports(from: Date!, till: Date!): [Report] 
+    schedules(from: String!, till: String!): [Schedule]
+    reports(from: String!, till: String!): [Report] 
   }
 
 
   type Day implements INode {
     id: ID!
     
-    year: String!
+    year: Int!
     dayOfYear: Int!
     dayOfWeek: Int!
     display: String!
     display_he: String!
-    isHoliday: Int!
+    isHoliday: Boolean!
     holidayName: String!
 
     schedules(employees: [Int], stations: [Int]): [Schedule]
@@ -69,8 +62,8 @@ export let typeDefs = gql`
     date: Day!
     employee: Employee!
     station: Station!
-    in: Date!
-    out: Date!
+    in: String!
+    out: String!
   }
 
   type Report implements INode {
@@ -79,8 +72,8 @@ export let typeDefs = gql`
     date: Day!
     employee: Employee!
     station: Station!
-    in: Date
-    out: Date
+    in: String
+    out: String
   }
 
 
@@ -91,12 +84,12 @@ export let typeDefs = gql`
     groups: [Group]
     station(StationNumber: Int!): Station
     stations(group: Int): [Station]
-    day(data: Date!): Day
-    days(from: Date, till: Date): [Day]
-    report(data: Date!): Report
-    reports(from: Date!, till: Date!): [Report]
-    schedule(data: Date!): Schedule
-    schedules(from: Date!, till: Date!): [Schedule]
+    day(data: String!): Day
+    days(from: String, till: String): [Day]
+    report(data: String!): Report
+    reports(from: String!, till: String!): [Report]
+    schedule(data: String!): Schedule
+    schedules(from: String!, till: String!): [Schedule]
   }
 
 `;

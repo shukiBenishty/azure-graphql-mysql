@@ -18,7 +18,7 @@
 
 module.exports = (sequelize, Sequelize) => {
     return sequelize.define('Station', {
-        StationNumber: { type: Sequelize.STRING, allowNull: false },
+        stationNumber: { type: Sequelize.STRING, allowNull: false, primaryKey: true },
         role: { type: Sequelize.STRING, allowNull: false }
     })
 }

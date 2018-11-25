@@ -1,5 +1,4 @@
 import moment from 'moment';
-import mysql from 'promise-mysql';
 import fs from 'fs';
 var rp = require('request-promise').defaults({
   //proxy:'http://username:password@host:port',
@@ -44,7 +43,7 @@ let counter = 0;
         return holiday.date === dayToComapre;
       });
       let isHoliday = found ? true : false;
-      let holidayName = found ? `N'${found.hebrew}'` : 'NULL';
+      let holidayName = found ? `${found.hebrew}` : 'NULL';
 
       // See https://www.hebcal.com/home/219/hebrew-date-converter-rest-api
       // for docuentation
