@@ -1,4 +1,10 @@
 var casual = require('casual');
+var fs = require('fs');
+ 
+let Days = fs.readFileSync('../calendar.js', 'utf8')
+
+
+
 let roles = ["רכז", "סייעת", "גננת", "מדריכה", "מנהלת"];
 let Groups = [];
 for (let index = 0; index < 9; index++) {
@@ -26,20 +32,17 @@ for (let index = 0; index < Groups.length * roles.length; index++) {
         groupSymbole = Groups[casual.integer(0, Groups.length - 1)].symbole
     }
 }
-let Days = [];
-for (let index = 0; index < 1000; index++) {
-    let data = casual.date(format = 'YYYY-MM-DD');
-    Days[index] = {
-        data: data,
-        year: casual.year,
-        dayOfYear: casual.day_of_year,
-        dayOfWeek: casual.day_of_week,
-        display: casual.date(format = 'YYYY-MM-DD'),
-        display_he: "כו' בסיוון",
-        isHoliday: casual.coin_flip ,
-        holidayName: casual.month_name 
+let Schedules = [];
+for (let index = 0; index < 300; index++) {
+    Schedules[index] = {
+        date: {},
+        employeeId: Employees[],
+        StationNumber: {},
+        in: casual.time(format = 'HH:mm:ss'),
+        out: casual.time(format = 'HH:mm:ss'),
     }
 }
+
 let database = {
     
     Days: [
