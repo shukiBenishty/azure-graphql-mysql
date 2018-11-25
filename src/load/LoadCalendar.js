@@ -1,14 +1,19 @@
 import moment from 'moment';
 import mysql from 'promise-mysql';
-import rp from 'request-promise';
-
+import fs from 'fs';
+var rp = require('request-promise').defaults({
+  //proxy:'http://username:password@host:port',
+  proxy: 'http://forticache:8080',
+  strictSSL :false
+});
 
 let dt = moment('01-01-2018', 'DD-MM-YYYY');
-
+let calendar = [];
+let counter = 0;
 (async() => {
 
   try {
-    const conn = await mysql.createConnection(config);
+    // const conn = await mysql.createConnection(config);
     let _month = 0; // force initial request
     let holidays = [];
 
@@ -50,15 +55,30 @@ let dt = moment('01-01-2018', 'DD-MM-YYYY');
       const display = dt.format('DD-MM-YYYY');
 
       console.log(`Year: ${year} DOY: ${dayOfYear} Display: ${display} Heb: ${hebrewDisplay}`);
-
-      const sqlQuery = `insert into days (year, dayOfYear, dayOfWeek, display, display_he, isHoliday, holidayName) values(${year}, '${dayOfYear}', ${dayOfWeek}, '${display}', '${hebrewDisplay}', ${isHoliday}, ${holidayName})`;
-      //console.log(sqlQuery);
-      await conn.query(sqlQuery);
+      calendar[counter] = {
+        year,
+        dayOfYear,
+        dayOfWeek,
+        display,
+        display_he: hebrewDisplay,
+        isHoliday,
+        holidayName
+      }
+      counter++;
+      // const sqlQuery = `insert into days (year, dayOfYear, dayOfWeek, display, display_he, isHoliday, holidayName) values(${year}, '${dayOfYear}', ${dayOfWeek}, '${display}', '${hebrewDisplay}', ${isHoliday}, ${holidayName})`;
+      // //console.log(sqlQuery);
+      // await conn.query(sqlQuery);
 
       dt.add(1, 'days'); // moment is mutable
     }
-
-    await conn.end();
+    fs.writeFile("calendar.js", JSON.stringify(calendar, null, 2), function(err) {
+      if(err) {
+          return console.log(err);
+      }
+    
+      console.log("The file was saved!");
+    }); 
+    // await conn.end();
 
   } catch( err ) {
     console.log(err);
@@ -68,3 +88,5 @@ let dt = moment('01-01-2018', 'DD-MM-YYYY');
 
 
 })();
+
+

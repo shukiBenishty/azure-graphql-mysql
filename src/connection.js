@@ -20,16 +20,21 @@ const Employee = EmployeeModel(sequelize, Sequelize);
 const Schedule = ScheduleModel(sequelize, Sequelize);
 const Station = StationModel(sequelize, Sequelize);
 
-const Day_Report = sequelize.define('Day_Report', {})
-const Day_Schedule = sequelize.define('Day_Schedule', {})
+// const Day_Report = sequelize.define('Day_Report', {})
+// const Day_Schedule = sequelize.define('Day_Schedule', {})
 
 Schedule.belongsTo(Day);
+Schedule.belongsTo(Employee);
+Schedule.belongsTo(Station);
+
 Report.belongsTo(Day) 
+Report.belongsTo(Employee);
+Report.belongsTo(Station);
 
 Station.belongsTo(Group)
 
-Day.belongsToMany(Schedule, { through: Day_Schedule, unique: true })
-Day.belongsToMany(Report, { through: Day_Report, unique: true })
+// Day.belongsToMany(Schedule, { through: Day_Schedule, unique: true })
+// Day.belongsToMany(Report, { through: Day_Report, unique: true })
 
 sequelize.sync({ force: true })
   .then(() => {
