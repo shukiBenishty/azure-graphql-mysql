@@ -1,16 +1,24 @@
 
-class Station {
+// class Station {
 
-    constructor(id,  StationNumber, role, group) { 
+//     constructor(id,  StationNumber, role, group) { 
         
-        this.id = id;
-        this.StationNumber = StationNumber;
-        this.role = role;
-        this.group = group;
+//         this.id = id;
+//         this.StationNumber = StationNumber;
+//         this.role = role;
+//         this.group = group;
 
-    }
+//     }
   
-  };
+//   };
+
+
+// export default Station;
   
-  export default Station;
-  
+
+module.exports = (sequelize, Sequelize) => {
+    return sequelize.define('Station', {
+        StationNumber: { type: Sequelize.STRING, allowNull: false },
+        role: { type: Sequelize.STRING, allowNull: false }
+    })
+}

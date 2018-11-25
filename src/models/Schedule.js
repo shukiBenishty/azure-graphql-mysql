@@ -1,5 +1,5 @@
 
-// class Report {
+// class Schedule {
 
 //     constructor(id,  date, employee, station, in, out) { 
         
@@ -14,14 +14,14 @@
   
 //   };
 
-  
-// export default Report;
+// export default Schedule;
   
 
-module.exports = (sequelize, Sequelize) => {
-    return sequelize.define('Report', {
-        in: { type: Sequelize.DATE, allowNull: true },
-        out: { type: Sequelize.DATE, allowNull: true }
-    })
-  }
   
+module.exports = (sequelize, Sequelize) => {
+    return sequelize.define('Schedule', {
+        in: { type: Sequelize.DATE, allowNull: true },
+        out: { type: Sequelize.DATE, allowNull: true },
+    })
+}
+

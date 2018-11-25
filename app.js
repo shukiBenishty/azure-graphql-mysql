@@ -4,13 +4,16 @@ const pubsub =  require('./src/resolvers.js').pubsub;
 const express = require('express');
 const { ApolloServer, gql } = require('apollo-server-express');
 
-import Database from './src/Database';
-const config = {
-  host: "dbmysqlersver.mysql.database.azure.com",
-  user: "test",
-  password: "q1w2e3r4T%Y^",
-  database: "test"
-};
+
+const {
+  Day,
+  Report,
+  Schedule,
+  Group,
+  Employee,
+  Station
+} = require('./src/connection');
+
 
 const app = express();
 

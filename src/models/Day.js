@@ -1,20 +1,34 @@
 
-class Day {
+// class Day {
 
-    constructor(id, year, dayOfYear, dayOfWeek, display, display_he, isHoliday, holidayName) { 
+//     constructor(id, year, dayOfYear, dayOfWeek, display, display_he, isHoliday, holidayName) { 
         
-        this.id = id;
-        this.year = year;
-        this.dayOfYear = dayOfYear;
-        this.dayOfWeek = dayOfWeek;
-        this.display = display;
-        this.display_he = display_he;
-        this.isHoliday = isHoliday;
-        this.holidayName = holidayName;
+//         this.id = id;
+//         this.year = year;
+//         this.dayOfYear = dayOfYear;
+//         this.dayOfWeek = dayOfWeek;
+//         this.display = display;
+//         this.display_he = display_he;
+//         this.isHoliday = isHoliday;
+//         this.holidayName = holidayName;
 
-    }
+//     }
   
-  };
+//   };
+
+// export default Day;
   
-  export default Day;
+
+module.exports = (sequelize, Sequelize) => {
+    return sequelize.define('Day', {
+        date: { type: Sequelize.DATE, allowNull: false},
+        year: { type: Sequelize.STRING, allowNull: false },
+        dayOfYear: { type: Sequelize.STRING, allowNull: false },
+        dayOfWeek: { type: Sequelize.STRING, allowNull: false },
+        display: { type: Sequelize.STRING, allowNull: false },
+        display_he: { type: Sequelize.STRING, allowNull: false },
+        isHoliday: { type: Sequelize.BOOLEAN, allowNull: false },
+        holidayName: { type: Sequelize.STRING, allowNull: true }
+    })
+  }
   

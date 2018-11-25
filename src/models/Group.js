@@ -1,13 +1,20 @@
-import casual from 'casual';
 
-class Group {
+// class Group {
 
-  constructor(id, symbol, name) {
-    this.id = id;
-    this.symbol = symbol;
-    this.name = name;
-  }
+//   constructor(id, symbol, name) {
+//     this.id = id;
+//     this.symbol = symbol;
+//     this.name = name;
+//   }
 
-};
+// };
 
-export default Group;
+// export default Group;
+
+
+module.exports = (sequelize, Sequelize) => {
+  return sequelize.define('Group', {
+    symbol: { type: Sequelize.STRING, allowNull: false },
+    name: { type: Sequelize.STRING, allowNull: false }
+  })
+}

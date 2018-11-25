@@ -1,16 +1,28 @@
 
-class Employee {
+// class Employee {
 
-  constructor(id, firstName, lastName, birthday, phone, registrationDate) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.birthday = birthday;
-    this.registrationDate = registrationDate;
-    this.phone = phone;
+//   constructor(id, firstName, lastName, birthday, phone, registrationDate) {
+//     this.id = id;
+//     this.firstName = firstName;
+//     this.lastName = lastName;
+//     this.birthday = birthday;
+//     this.registrationDate = registrationDate;
+//     this.phone = phone;
 
-  }
+//   }
 
-};
+// };
 
-export default Employee;
+
+// export default Employee;
+
+
+module.exports = (sequelize, Sequelize) => {
+  return sequelize.define('Employee', {
+    firstName: { type: Sequelize.STRING, allowNull: false },
+    lastName: { type: Sequelize.STRING, allowNull: false },
+    birthday: { type: Sequelize.DATE, allowNull: false },
+    registrationDate: { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
+    phone: { type: Sequelize.STRING, allowNull: false }
+  })
+}
