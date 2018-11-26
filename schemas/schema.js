@@ -5,6 +5,8 @@ export let typeDefs = gql`
     id: ID!
   }
 
+  scalar Date
+
   type Employee implements INode {
     id: ID!
 
@@ -85,7 +87,7 @@ export let typeDefs = gql`
     days(from: String, till: String): [Day]
     report(data: String!): Report
     reports(from: String!, till: String!): [Report]
-    schedule(data: String!): Schedule
+    schedule(data: Date!): Schedule
     schedules(from: String!, till: String!): [Schedule]
   }
 `;
