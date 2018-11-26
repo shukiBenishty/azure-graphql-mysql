@@ -1,4 +1,3 @@
-
 // class Employee {
 
 //   constructor(id, firstName, lastName, birthday, phone, registrationDate) {
@@ -13,16 +12,14 @@
 
 // };
 
-
 // export default Employee;
 
-
 module.exports = (sequelize, Sequelize) => {
-  return sequelize.define('Employee', {
+  return sequelize.define("Employee", {
     firstName: { type: Sequelize.STRING, allowNull: false },
     lastName: { type: Sequelize.STRING, allowNull: false },
     birthday: { type: Sequelize.DATEONLY, allowNull: false },
     registrationDate: { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
     phone: { type: Sequelize.STRING, allowNull: false }
-  })
-}
+  });
+};

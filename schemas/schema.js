@@ -1,12 +1,11 @@
-const { gql } = require('apollo-server');
+const { gql } = require("apollo-server");
 
 export let typeDefs = gql`
-
-  interface INode  {
+  interface INode {
     id: ID!
   }
 
-  type Employee implements INode{
+  type Employee implements INode {
     id: ID!
 
     firstName: String!
@@ -37,13 +36,12 @@ export let typeDefs = gql`
     group: Group!
 
     schedules(from: String!, till: String!): [Schedule]
-    reports(from: String!, till: String!): [Report] 
+    reports(from: String!, till: String!): [Report]
   }
-
 
   type Day implements INode {
     id: ID!
-    
+
     year: Int!
     dayOfYear: Int!
     dayOfWeek: Int!
@@ -58,7 +56,7 @@ export let typeDefs = gql`
 
   type Schedule implements INode {
     id: ID!
-  
+
     date: Day!
     employee: Employee!
     station: Station!
@@ -76,7 +74,6 @@ export let typeDefs = gql`
     out: String
   }
 
-
   type Query {
     employee(id: Int!): Employee
     employees: [Employee]
@@ -91,7 +88,4 @@ export let typeDefs = gql`
     schedule(data: String!): Schedule
     schedules(from: String!, till: String!): [Schedule]
   }
-
 `;
-
-
